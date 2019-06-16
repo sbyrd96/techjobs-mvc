@@ -39,6 +39,19 @@
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
 
+    <h2 th:if="${searchResults}" th:text="${searchResults.size() + 'Matched your search'}">Results</h2>
+
+<!-- from list-column.html this search will be similar NEEDS FIXED! -->
+
+        <div th:if="${items} and ${items.size()}">
+
+            <table>
+                <tr th:each="item, idx : ${items}" th:class="${idx.odd} ? 'odd'">
+                    <td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a></td>
+                </tr>
+            </table>
+
+        </div>
 
 
 </div>
