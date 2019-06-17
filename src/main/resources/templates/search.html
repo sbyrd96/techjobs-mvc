@@ -39,29 +39,29 @@
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
 
-    <div th:if="${searchResults} and ${searchResults.size()}">
 
-        <h2 th:text="${searchResults.size()} + 'Matched your search'"></h2>
+    <div th:if="${searchResults}">
+
+        <div th:if="${searchResults.size() == 0}"><h3>No results.</h3></div>
+
+        <h2 th:text="${searchResults.size()} + ' result(s) matched your search.'"></h2>
 
 
 <!-- from list-column.html this search will be similar NEEDS FIXED! -->
 
-        <div th:each="searchResult: ${searchResults}">
+        <table th:if="${searchResults.size() != 0}" class="job-listing" th:each="job : ${searchResults}">
 
-            <table class="job-listing">
+        <tr th:each="jobData : ${job.entrySet()}">
 
-            <tr th:each="item, idx: ${searchResult}" th:class="${idx.odd} ? 'odd'">
+            <th th:text="${jobData.getKey()}">Title</th>
 
-               <td th:text="${item.key}"></td>
-               <td th:text="${item.value}"></td>
+            <td th:text="${jobData.getValue()}">Value</td>
 
-             </tr>
-            </table>
+        </tr>
 
-        </div>
+        </table>
 
     </div>
-
 </div>
 </body>
 </html>
