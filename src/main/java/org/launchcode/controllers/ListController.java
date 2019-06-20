@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import static org.launchcode.models.JobData.findByColumnAndValue;
 /**
  * Created by LaunchCode
  */
@@ -59,7 +59,7 @@ public class ListController {
         ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(column, value);
         model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         model.addAttribute("jobs", jobs);
-
+        model.addAttribute("column", columnChoices);
         return "list-jobs";
     }
 }
